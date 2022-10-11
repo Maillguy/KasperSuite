@@ -8,16 +8,18 @@ public class kasperWindow extends JFrame implements ActionListener
 {
 	private Button button1, button2, button3;
 	private cipherWindow secondWindow = new cipherWindow();
+	private hashWindow thirdWindow = new hashWindow();
 
 	public kasperWindow() 
 	{
 		
 		setTitle("KasperSuite");
-		setSize(400, 400);
+		setSize(350, 350);
 		setLocation(750, 350);
 		setVisible(true);
 		
 		secondWindow.setVisible(false);
+		thirdWindow.setVisible(false);
 		setLayout(new FlowLayout());
 
 		button1 = new Button("Caesar Cipher");
@@ -37,7 +39,7 @@ public class kasperWindow extends JFrame implements ActionListener
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				// your code here
+				thirdWindow.setVisible(true);
 			}
 		});
 
@@ -62,8 +64,8 @@ public class kasperWindow extends JFrame implements ActionListener
 
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent e) 
+	{
 		
 	}
 

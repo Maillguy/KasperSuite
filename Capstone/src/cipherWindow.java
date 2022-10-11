@@ -16,18 +16,17 @@ public class cipherWindow extends Frame implements ActionListener
 	
 
 	public cipherWindow() 
-	{
-		setLayout(new FlowLayout());
-		
+	{		
 		setTitle("Caesar Cypher");
-		setSize(400, 400);
+		setSize(350, 350);
 		setLocation(750, 350);
 		setVisible(true);
+		setLayout(new FlowLayout());
 
 		plaintextLabel = new Label("Plaintext Input: ");
 		add(plaintextLabel);
 
-		plaintextInput = new TextField(30);
+		plaintextInput = new TextField(10);
 		add(plaintextInput);
 		
 		shiftLabel = new Label("Shift: ");
@@ -39,6 +38,8 @@ public class cipherWindow extends Frame implements ActionListener
 		
 		encryptButton = new Button(" v Encrypt v ");
 		add(encryptButton);
+		encryptButton.setLocation(0, 0);
+		
 		encryptButton.addActionListener((new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -83,45 +84,125 @@ public class cipherWindow extends Frame implements ActionListener
 		}));
 		
 		
-//		Blank = new Label("                        ");
-//		add(Blank);
+		Blank = new Label("											      ");
+		add(Blank);
 		
 		cyphertextOutputLabel = new Label("Ciphertext Output: ");
 		add(cyphertextOutputLabel);
+		
 		cyphertextOutputLabel.setAlignment(Label.LEFT);
 		
-		cyphertextOutput = new TextField(30);
+		cyphertextOutput = new TextField(15);
 		add(cyphertextOutput);
 		
-		shiftLabel2 = new Label("Shift: ");
-		add(shiftLabel2);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
 		
-		Integer[] shiftInt2 = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-		final JComboBox<Integer> shiftList2 = new JComboBox<Integer>(shiftInt1);
-		add(shiftList2);
-
 		cyphertextLabel = new Label("Cyphertext Input: ");
 		add(cyphertextLabel);
 		
-		cyphertextInput = new TextField(30);
+		cyphertextInput = new TextField(11);
 		add(cyphertextInput);
-		//setLocation(750, 350);
 		
-		decryptButton = new Button(" ^ Decrypt ^ ");
-		add(decryptButton);
-		decryptButton.addActionListener(new ActionListener() 
-		{
+		
+		shiftLabel2 = new Label("Shift: ");
+		add(shiftLabel2);
+		Integer[] shiftInt2 = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+		final JComboBox<Integer> shiftList2 = new JComboBox<Integer>(shiftInt1);
+		add(shiftList2);
+		
+		Blank = new Label("");
+		add(Blank);
 
+		decryptButton = new Button(" v Decrypt v ");
+		add(decryptButton);
+		decryptButton.setLocation(100, 100);
+		
+		decryptButton.addActionListener((new ActionListener() 
+		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				//Your code here
-			}
-			});
-		 
-		 
-		
 
-	
+			}
+		})); 
+		
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("    ");
+		add(Blank);
+		
+		plaintextOutputLabel = new Label("Plaintext Output: ");
+		add(plaintextOutputLabel);
+		plaintextOutputLabel.setAlignment(Label.LEFT);
+		
+		plaintextOutput = new TextField(15);
+		add(plaintextOutput);
+		
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+		Blank = new Label("");
+		add(Blank);
+			
 
 		addWindowListener(new WindowAdapter() 
 		{
