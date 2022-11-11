@@ -13,7 +13,6 @@ public class cipherWindow extends Frame implements ActionListener
 	private Label cyphertextOutputLabel, plaintextOutputLabel;
 	private TextField plaintextInput, cyphertextInput;
 	private TextField cyphertextOutput, plaintextOutput;
-	
 
 	public cipherWindow() 
 	{		
