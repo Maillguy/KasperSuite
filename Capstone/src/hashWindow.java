@@ -11,7 +11,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 
-
 public class hashWindow extends Frame implements ActionListener
 {
 	private Label fileLabel0, fileLabel1; 
