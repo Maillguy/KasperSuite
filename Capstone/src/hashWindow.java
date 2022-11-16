@@ -4,17 +4,16 @@ import javax.swing.*;
 import java.util.*;
 import java.io.*;
 import java.math.BigInteger;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.nio.*;
+import java.security.*;
+import java.util.Base64.Encoder;
+
 
 
 public class hashWindow extends Frame implements ActionListener
 {
 	private Label fileLabel0, fileLabel1; 
-	private static TextField fileOutput0, fileOutput1, hashChecker;
+	private static TextField fileOutput0, fileOutput1, hashChecker0, hashChecker1, sameChecker;
 	private Label Blank; 
 	private Button fileButton0, fileButton1, hashButton;
 	
@@ -23,11 +22,15 @@ public class hashWindow extends Frame implements ActionListener
 		setTitle("Auto Hasher");
 		setSize(350, 350);
 		setLocation(750, 350);
+		setResizable(false);
 		setVisible(true);
 		setLayout(new FlowLayout());
 		
 		fileButton0 = new Button("Choose File for Hashing");
 		add(fileButton0);
+		
+		fileOutput0 = new TextField(10);
+		add(fileOutput0);
 		
 		fileButton0.addActionListener((new ActionListener() 
 		{
@@ -49,10 +52,9 @@ public class hashWindow extends Frame implements ActionListener
 			}
 		}));
 
-		fileOutput0 = new TextField(10);
-		add(fileOutput0);
 		
-		String[] hashString0 = {"MD5", "SHA-256", "SHA-512", "crc32" };
+		
+		String[] hashString0 = {"MD5", "SHA-256", "SHA-512", "HASH"};
 		final JComboBox<String> hashList0 = new JComboBox<String>(hashString0);
 		add(hashList0);
 		
@@ -61,6 +63,9 @@ public class hashWindow extends Frame implements ActionListener
 		
 		fileButton1 = new Button("Choose File for Hashing");
 		add(fileButton1);
+		
+		fileOutput1 = new TextField(10);
+		add(fileOutput1);
 		
 		fileButton1.addActionListener((new ActionListener() 
 		{
@@ -81,10 +86,9 @@ public class hashWindow extends Frame implements ActionListener
 				
 			}
 		}));
-		fileOutput1 = new TextField(10);
-		add(fileOutput1);
 		
-		String[] hashString1 = {"MD5", "SHA-256", "SHA-512", "crc32" };
+		
+		String[] hashString1 = {"MD5", "SHA-256", "SHA-512", "HASH"};
 		final JComboBox<String> hashList1 = new JComboBox<String>(hashString1);
 		add(hashList1);
 		
@@ -96,17 +100,55 @@ public class hashWindow extends Frame implements ActionListener
 		
 		hashButton.addActionListener((new ActionListener() 
 		{
-			public void actionPerformed(ActionEvent e) 
+			public void actionPerformed(ActionEvent e)
 			{
+				File file0 = new File(fileOutput0.getText());
+				File file1 = new File(fileOutput1.getText());
+					
+				try 
+				{
+					if(hashList0.getSelectedItem().toString() != "HASH")
+					{
+						hashFile0(file0, hashList0.getSelectedItem().toString());
+					}
+					
+					if(hashList1.getSelectedItem().toString() != "HASH")
+					{
+						hashFile1(file1, hashList1.getSelectedItem().toString());
+					}
+					
+					
+					if(hashChecker0.getText()== hashChecker0.getText())
+					{
+						sameChecker = new TextField(10);
+						add(sameChecker);
+						sameChecker.setText("HASHES ARE THE SAME");
+					}
+					else 
+					{
+						sameChecker = new TextField(10);
+						add(sameChecker);
+						sameChecker.setText("HASHES ARE NOT THE SAME");
+					}
+				}
 				
-				
+					catch (NoSuchAlgorithmException | IOException e1) 
+					{
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
 			}
+			
+			
 		}));
 		
 		
-		hashChecker = new TextField(30);
-		add(hashChecker);
+		hashChecker0 = new TextField(30);
+		add(hashChecker0);
 		
+		hashChecker1 = new TextField(30);
+		add(hashChecker1);
 		
 		addWindowListener(new WindowAdapter() 
 		{
@@ -118,11 +160,56 @@ public class hashWindow extends Frame implements ActionListener
 	}
 	
 	
-	
-	
-	public static void main(String [] Args)
+	private static void hashFile0(File file, String algorithm) throws IOException, NoSuchAlgorithmException
 	{
-		new hashWindow();
+	    try (FileInputStream inputStream = new FileInputStream(file)) 
+	    {
+	        MessageDigest digest = MessageDigest.getInstance(algorithm);
+	 
+	        byte[] bytesBuffer = new byte[1024];
+	        int bytesRead = -1;
+	 
+	        while ((bytesRead = inputStream.read(bytesBuffer)) != -1) 
+	        {
+	            digest.update(bytesBuffer, 0, bytesRead);
+	        }
+	 
+	        byte[] hashedBytes = digest.digest();
+	        String hash = byteArrayToHex(hashedBytes);
+	        hashChecker0.setText(hash);
+	        return;
+	    } 
+	    
+	}
+	
+	private static void hashFile1(File file, String algorithm) throws IOException, NoSuchAlgorithmException
+	{
+	    try (FileInputStream inputStream = new FileInputStream(file)) 
+	    {
+	        MessageDigest digest = MessageDigest.getInstance(algorithm);
+	 
+	        byte[] bytesBuffer = new byte[1024];
+	        int bytesRead = -1;
+	 
+	        while ((bytesRead = inputStream.read(bytesBuffer)) != -1) 
+	        {
+	            digest.update(bytesBuffer, 0, bytesRead);
+	        }
+	 
+	        byte[] hashedBytes = digest.digest();
+	        String hash = byteArrayToHex(hashedBytes);
+	        hashChecker1.setText(hash);
+	        return;
+	    } 
+	    
+	}
+
+	public static String byteArrayToHex(byte[] a) 
+	{
+		   StringBuilder sb = new StringBuilder(a.length * 2);
+		   for(byte b: a)
+		   sb.append(String.format("%02x", b));
+		   return sb.toString();
 	}
 
 	@Override
@@ -130,4 +217,10 @@ public class hashWindow extends Frame implements ActionListener
 	{
 		
 	}
+	
+	public static void main(String [] Args)
+	{
+		new hashWindow();
+	}
+	
 }

@@ -13,12 +13,14 @@ public class cipherWindow extends Frame implements ActionListener
 	private Label cyphertextOutputLabel, plaintextOutputLabel;
 	private TextField plaintextInput, cyphertextInput;
 	private TextField cyphertextOutput, plaintextOutput;
+	
 
 	public cipherWindow() 
 	{		
 		setTitle("Caesar Cypher");
 		setSize(350, 350);
 		setLocation(750, 350);
+		setResizable(false);
 		setVisible(true);
 		setLayout(new FlowLayout());
 

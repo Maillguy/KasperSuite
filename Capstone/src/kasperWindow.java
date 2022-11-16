@@ -4,12 +4,13 @@ import javax.swing.*;
 import java.util.*;
 import java.io.*;
 
-
 public class kasperWindow extends JFrame implements ActionListener 
 {
-	private Button button1, button2, button3;
+	private Button button1, button2, button3, button4;
 	private cipherWindow secondWindow = new cipherWindow();
 	private hashWindow thirdWindow = new hashWindow();
+	private integWindow fourthWindow = new integWindow();
+	
 
 	public kasperWindow() 
 	{
@@ -17,10 +18,12 @@ public class kasperWindow extends JFrame implements ActionListener
 		setTitle("KasperSuite");
 		setSize(350, 350);
 		setLocation(750, 350);
+		setResizable(false);
 		setVisible(true);
 		
 		secondWindow.setVisible(false);
 		thirdWindow.setVisible(false);
+		fourthWindow.setVisible(false);
 		setLayout(new FlowLayout());
 
 		button1 = new Button("Caesar Cipher");
@@ -33,7 +36,6 @@ public class kasperWindow extends JFrame implements ActionListener
 			}
 		});
 		
-		
 		button2 = new Button("Auto Hasher");
 		add(button2);
 		button2.addActionListener(new ActionListener() 
@@ -41,6 +43,16 @@ public class kasperWindow extends JFrame implements ActionListener
 			public void actionPerformed(ActionEvent e) 
 			{
 				thirdWindow.setVisible(true);
+			}
+		});
+		
+		button3 = new Button("Integrity Checker");
+		add(button3);
+		button3.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				fourthWindow.setVisible(true);
 			}
 		});
 
