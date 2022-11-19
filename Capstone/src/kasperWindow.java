@@ -1,8 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.util.*;
-import java.io.*;
 
 public class kasperWindow extends JFrame implements ActionListener 
 {
@@ -10,11 +8,10 @@ public class kasperWindow extends JFrame implements ActionListener
 	private cipherWindow secondWindow = new cipherWindow();
 	private hashWindow thirdWindow = new hashWindow();
 	private integWindow fourthWindow = new integWindow();
+	private keylogWindow fifthWindow = new keylogWindow();
 	
-
 	public kasperWindow() 
 	{
-		
 		setTitle("KasperSuite");
 		setSize(350, 350);
 		setLocation(750, 350);
@@ -24,8 +21,9 @@ public class kasperWindow extends JFrame implements ActionListener
 		secondWindow.setVisible(false);
 		thirdWindow.setVisible(false);
 		fourthWindow.setVisible(false);
+		fifthWindow.setVisible(false);
 		setLayout(new FlowLayout());
-
+		
 		button1 = new Button("Caesar Cipher");
 		add(button1);
 		button1.addActionListener(new ActionListener() 
@@ -55,30 +53,39 @@ public class kasperWindow extends JFrame implements ActionListener
 				fourthWindow.setVisible(true);
 			}
 		});
-
-
-		// close the window
-		addWindowListener(new WindowAdapter() 
+		
+		button4 = new Button("KasperLogger");
+		add(button4);
+		button4.addActionListener(new ActionListener() 
 		{
-			public void windowClosing(WindowEvent e) 
+			public void actionPerformed(ActionEvent e) 
 			{
-				dispose();
-				System.exit(0); // calling the method is a must
+				fifthWindow.setVisible(true);
 			}
 		});
-
+		
+		// close the window
+				addWindowListener(new WindowAdapter() 
+				{
+					public void windowClosing(WindowEvent e) 
+					{
+						dispose();
+						System.exit(0); // calling the method is a must
+					}
+				});
+				
+				
 	}
-
 
 	public static void main(String[] args) 
 	{
 		new kasperWindow();
+
 	}
 
-
 	@Override
-	public void actionPerformed(ActionEvent e) 
-	{
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 

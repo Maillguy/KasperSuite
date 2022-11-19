@@ -1,12 +1,14 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.util.*;
-import java.io.*;
 
-public class cipherWindow extends Frame implements ActionListener 
+
+import javax.swing.JFrame;
+
+public class cipherWindow extends JFrame implements ActionListener  
 {
-
 	private Button encryptButton, decryptButton;
 	private Label plaintextLabel,shiftLabel, shiftLabel2, cyphertextLabel, decypheredLabel;
 	private Label Blank;
@@ -14,9 +16,8 @@ public class cipherWindow extends Frame implements ActionListener
 	private TextField plaintextInput, cyphertextInput;
 	private TextField cyphertextOutput, plaintextOutput;
 	
-
 	public cipherWindow() 
-	{		
+	{
 		setTitle("Caesar Cypher");
 		setSize(350, 350);
 		setLocation(750, 350);
@@ -83,7 +84,6 @@ public class cipherWindow extends Frame implements ActionListener
 				cyphertextOutput.setText(cipherText);
 			}
 		}));
-		
 		
 		Blank = new Label("											      ");
 		add(Blank);
@@ -153,7 +153,24 @@ public class cipherWindow extends Frame implements ActionListener
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-
+				String alphabet = "abcdefghijklmnopqrstuvwxyz";
+				String cyphertext = cyphertextInput.getText();
+		        // converting the text to lowercase
+		        String plaintext = "";
+		        // initializing empty string to add alphabets iteratively
+		        int shift = shiftList2.getSelectedIndex();
+		        for (int i = 0; i < cyphertext.length(); i++) 
+		        {
+		            int mappingV = alphabet.indexOf(cyphertext.charAt(i));
+		            int deVal = (mappingV - shift) % 26;
+		            if (deVal < 0) // to handle the negative values
+		            {
+		                deVal = alphabet.length() + deVal;
+		            }
+		            char Val = alphabet.charAt(deVal); // the character to be replaced
+		            plaintext = plaintext + Val; // adding to plaintext
+		        }
+		        plaintextOutput.setText(plaintext);
 			}
 		})); 
 		
@@ -203,31 +220,28 @@ public class cipherWindow extends Frame implements ActionListener
 		add(Blank);
 		Blank = new Label("");
 		add(Blank);
-			
-
+		
 		addWindowListener(new WindowAdapter() 
 		{
 			public void windowClosing(WindowEvent e) 
 			{
 				
 				dispose();
-//				System.exit(0); // calling the method is a must
 			}
 		});
 	}
 
 	public static void main(String[] args) 
 	{
+		// TODO Auto-generated method stub
 
-		new cipherWindow();
 	}
-	
+
 	@Override
-	public void actionPerformed(ActionEvent evt) 
+	public void actionPerformed(ActionEvent e) 
 	{
+		// TODO Auto-generated method stub
 		
 	}
-
-
 
 }

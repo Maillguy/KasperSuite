@@ -1,10 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.util.*;
-import java.io.*;
 
-public class integWindow extends Frame implements ActionListener 
+public class integWindow extends JFrame implements ActionListener 
 {
 	private Label intstructLabel0, intstructLabel1, hashLabel0, hashLabel1, Blank;
 	private TextField hashField0, hashField1, checkField;
@@ -20,10 +18,10 @@ public class integWindow extends Frame implements ActionListener
 		setLayout(new FlowLayout());
 		
 		
-		intstructLabel0 = new Label("Copy and Paste your hash values from the");
+		intstructLabel0 = new Label("Paste hash values you want to do an Integrity Check on");
 		add(intstructLabel0);
 		
-		intstructLabel1 = new Label("Auto Hasher to check the integrity of your files");
+		intstructLabel1 = new Label("Press the CHECK button to run the Integrity Checker");
 		add(intstructLabel1);
 		
 		hashLabel0 = new Label("Checksum from File 1");
@@ -38,7 +36,7 @@ public class integWindow extends Frame implements ActionListener
 		hashField1 = new TextField(15);
 		add(hashField1);
 		
-		Blank = new Label("                          ");
+		Blank = new Label("                   ");
 		add(Blank);
 		
 		checkButton = new Button("CHECK");
@@ -47,6 +45,10 @@ public class integWindow extends Frame implements ActionListener
 		checkField = new TextField(15);
 		add(checkField);
 		
+		Blank = new Label("                          ");
+		add(Blank);
+		
+
 		checkButton.addActionListener((new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -68,28 +70,25 @@ public class integWindow extends Frame implements ActionListener
 		Blank = new Label("                          ");
 		add(Blank);
 		
-		
 		// close the window
-				addWindowListener(new WindowAdapter() 
-				{
-					public void windowClosing(WindowEvent e) 
-					{
-						dispose();
-					}
-				});
+		addWindowListener(new WindowAdapter() 
+		{
+			public void windowClosing(WindowEvent e) 
+			{
+				dispose();
+			}
+		});
 	}
-
 
 	public static void main(String[] args) 
 	{
 		new integWindow();
-
 	}
 
-
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent e) 
+	{
+		
 		
 	}
 

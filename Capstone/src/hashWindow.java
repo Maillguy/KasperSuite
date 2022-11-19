@@ -1,23 +1,20 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.util.*;
 import java.io.*;
-import java.math.BigInteger;
-import java.nio.*;
 import java.security.*;
-import java.util.Base64.Encoder;
 
 
+import javax.swing.JFrame;
 
-public class hashWindow extends Frame implements ActionListener
+public class hashWindow extends JFrame implements ActionListener 
 {
 	private Label fileLabel0, fileLabel1; 
-	private static TextField fileOutput0, fileOutput1, hashChecker0, hashChecker1, sameChecker;
+	private static TextField fileOutput0, fileOutput1, hashChecker0, hashChecker1;
 	private Label Blank; 
 	private Button fileButton0, fileButton1, hashButton;
 	
-	public hashWindow()
+	public hashWindow() 
 	{
 		setTitle("Auto Hasher");
 		setSize(350, 350);
@@ -26,7 +23,7 @@ public class hashWindow extends Frame implements ActionListener
 		setVisible(true);
 		setLayout(new FlowLayout());
 		
-		fileButton0 = new Button("Choose File for Hashing");
+		fileButton0 = new Button("Choose File #1");
 		add(fileButton0);
 		
 		fileOutput0 = new TextField(10);
@@ -51,17 +48,12 @@ public class hashWindow extends Frame implements ActionListener
 				
 			}
 		}));
-
 		
-		
-		String[] hashString0 = {"MD5", "SHA-256", "SHA-512", "HASH"};
+		String[] hashString0 = {"MD5", "SHA-256", "SHA-512", "NO-HASH"};
 		final JComboBox<String> hashList0 = new JComboBox<String>(hashString0);
 		add(hashList0);
 		
-		
-
-		
-		fileButton1 = new Button("Choose File for Hashing");
+		fileButton1 = new Button("Choose File #2");
 		add(fileButton1);
 		
 		fileOutput1 = new TextField(10);
@@ -87,8 +79,7 @@ public class hashWindow extends Frame implements ActionListener
 			}
 		}));
 		
-		
-		String[] hashString1 = {"MD5", "SHA-256", "SHA-512", "HASH"};
+		String[] hashString1 = {"MD5", "SHA-256", "SHA-512", "NO-HASH"};
 		final JComboBox<String> hashList1 = new JComboBox<String>(hashString1);
 		add(hashList1);
 		
@@ -111,25 +102,22 @@ public class hashWindow extends Frame implements ActionListener
 					{
 						hashFile0(file0, hashList0.getSelectedItem().toString());
 					}
+					else if(hashList0.getSelectedItem().toString() == "HASH")
+					{
+						hashChecker0.setText("");
+					}
 					
 					if(hashList1.getSelectedItem().toString() != "HASH")
 					{
 						hashFile1(file1, hashList1.getSelectedItem().toString());
 					}
 					
+					else if(hashList1.getSelectedItem().toString() == "HASH")
+					{
+						hashChecker1.setText("");
+					}
 					
-					if(hashChecker0.getText()== hashChecker0.getText())
-					{
-						sameChecker = new TextField(10);
-						add(sameChecker);
-						sameChecker.setText("HASHES ARE THE SAME");
-					}
-					else 
-					{
-						sameChecker = new TextField(10);
-						add(sameChecker);
-						sameChecker.setText("HASHES ARE NOT THE SAME");
-					}
+					
 				}
 				
 					catch (NoSuchAlgorithmException | IOException e1) 
@@ -142,7 +130,6 @@ public class hashWindow extends Frame implements ActionListener
 			
 			
 		}));
-		
 		
 		hashChecker0 = new TextField(30);
 		add(hashChecker0);
@@ -158,7 +145,6 @@ public class hashWindow extends Frame implements ActionListener
 			}
 		});
 	}
-	
 	
 	private static void hashFile0(File file, String algorithm) throws IOException, NoSuchAlgorithmException
 	{
@@ -203,7 +189,7 @@ public class hashWindow extends Frame implements ActionListener
 	    } 
 	    
 	}
-
+	
 	public static String byteArrayToHex(byte[] a) 
 	{
 		   StringBuilder sb = new StringBuilder(a.length * 2);
@@ -212,15 +198,17 @@ public class hashWindow extends Frame implements ActionListener
 		   return sb.toString();
 	}
 
+	public static void main(String[] args) 
+	{
+		
+
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
+		// TODO Auto-generated method stub
 		
 	}
-	
-	public static void main(String [] Args)
-	{
-		new hashWindow();
-	}
-	
+
 }
