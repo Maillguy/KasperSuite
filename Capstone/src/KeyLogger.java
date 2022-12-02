@@ -94,7 +94,6 @@ public class KeyLogger extends JFrame implements ActionListener, NativeKeyListen
 				pw.print("");
 				pw.flush();
 				pw.close();
-				return;
 			}
 			else if(NativeKeyEvent.getKeyText(e.getKeyCode()).equals("Space"))
 			{

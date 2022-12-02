@@ -4,11 +4,12 @@ import javax.swing.*;
 
 public class kasperWindow extends JFrame implements ActionListener 
 {
-	private Button button1, button2, button3, button4;
+	private Button button1, button2, button3, button4, button5;
 	private cipherWindow secondWindow = new cipherWindow();
 	private hashWindow thirdWindow = new hashWindow();
 	private integWindow fourthWindow = new integWindow();
 	private keylogWindow fifthWindow = new keylogWindow();
+	private KNLWindow sixthWindow = new KNLWindow();
 	
 	public kasperWindow() 
 	{
@@ -22,9 +23,10 @@ public class kasperWindow extends JFrame implements ActionListener
 		thirdWindow.setVisible(false);
 		fourthWindow.setVisible(false);
 		fifthWindow.setVisible(false);
+		sixthWindow.setVisible(false);
 		setLayout(new FlowLayout());
 		
-		button1 = new Button("Caesar Cipher");
+		button1 = new Button("KasperCipher");
 		add(button1);
 		button1.addActionListener(new ActionListener() 
 		{
@@ -61,6 +63,22 @@ public class kasperWindow extends JFrame implements ActionListener
 			public void actionPerformed(ActionEvent e) 
 			{
 				fifthWindow.setVisible(true);
+			}
+		});
+		
+		button5 = new Button("KNL");
+		add(button5);
+		button5.addActionListener(new ActionListener()
+		{
+			public void actionPreformed(ActionEvent e)
+			{
+				sixthWindow.setVisible(true);
+			}
+
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				
 			}
 		});
 		

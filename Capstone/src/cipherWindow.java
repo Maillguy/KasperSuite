@@ -18,7 +18,7 @@ public class cipherWindow extends JFrame implements ActionListener
 	
 	public cipherWindow() 
 	{
-		setTitle("Caesar Cypher");
+		setTitle("KasperCipher");
 		setSize(350, 350);
 		setLocation(750, 350);
 		setResizable(false);
